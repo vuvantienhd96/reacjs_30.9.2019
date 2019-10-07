@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from './Context';
 
 import Contacts from './components/contacts/Contacts';
-import AddContact from './components/contacts/AddContact';
+import AddContact from './components/contacts/AddContact2';
 import Header from './components/layout/Header';
 
 function App() {
