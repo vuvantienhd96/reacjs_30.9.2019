@@ -3,9 +3,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Provider } from './Context';
-import Contacts from './components/Contacts';
 
-import Header from './components/Header';
+import Contacts from './components/contacts/Contacts';
+import AddContact from './components/contacts/AddContact2';
+import Header from './components/layout/Header';
 
 function App() {
   
@@ -14,6 +15,7 @@ function App() {
       <div className="App">
         <Header branName="Contact Manager"/>
         <div className="container">
+          <AddContact />
           <Contacts />
         </div>
       </div>

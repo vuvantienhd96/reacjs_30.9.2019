@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Consumer } from '../Context';
+import { Consumer } from '../../Context';
 import PropTypes from 'prop-types';
 
 class Contact extends Component {
     state = {
-        showContactInfo: true
+        showContactInfo: false
     };
 
     onShowClick = e =>{
