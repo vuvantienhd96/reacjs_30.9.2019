@@ -8,12 +8,29 @@ class AddContact extends Component {
     state = {
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        error: {}
     }
     
     onSubmit = (dispath, e) => {
         e.preventDefault();
         const  {name, email, phone} = this.state;
+
+        //Check For Errors
+        if(name == ''){
+            this.setState({error: {name: 'this is name wrong or invalid !'}})
+            return;
+        }
+        
+        if(phone == ''){
+            this.setState({error: {phone: 'this is phone wrong or invalid !'}})
+            return;
+        }
+
+        if(email == ''){
+            this.setState({error: {email: 'this is email wrong or invalid !'}})
+            return;
+        }
 
         const newContact = {
             id: uuid(),
@@ -26,14 +43,15 @@ class AddContact extends Component {
         this.setState({
             name: '',
             email: '',
-            phone:''
+            phone:'', 
+            error: {}
         });
     };
     
     onChange = (e) => this.setState({ [e.target.name] : e.target.value});
 
     render() {
-        const { name, phone, email } = this.state; 
+        const { name, phone, email, error } = this.state; 
 
         return (
             <Consumer>
@@ -50,6 +68,7 @@ class AddContact extends Component {
                                 placeholder="Enter name"
                                 value={name}
                                 onChange={this.onChange}
+                                error= {error.name}
                             />
                             <TextInputGroup 
                                 label="Phone"
@@ -57,6 +76,7 @@ class AddContact extends Component {
                                 placeholder="Enter phone"
                                 value={phone}
                                 onChange={this.onChange}
+                                error= {error.phone}
                             />
                             <TextInputGroup 
                                 label="Email"
@@ -65,10 +85,8 @@ class AddContact extends Component {
                                 value={email}
                                 onChange={this.onChange}
                                 type="email"
+                                error= {error.email}
                             />
-
-                            
-                            
                             <input 
                                 type="submit" 
                                 value="Add Contact" 
