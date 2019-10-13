@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Consumer } from '../../Context';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class Contact extends Component {
     state = {
@@ -12,9 +13,14 @@ class Contact extends Component {
             showContactInfo: !this.state.showContactInfo
         })
     }
-    
+
     onDeleteContact = (id, dispath) => {
-        dispath({type: 'Delete_contact', payload: id});
+        axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then(function(response){
+            dispath({type: 'Delete_contact', payload: id});
+            console.log(response);
+        });
+        
     }
 
     render() {
