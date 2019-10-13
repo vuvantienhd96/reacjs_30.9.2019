@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Consumer } from '../../Context';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { async } from 'q';
 
 class Contact extends Component {
     state = {
@@ -14,14 +15,15 @@ class Contact extends Component {
         })
     }
 
-    onDeleteContact = (id, dispath) => {
-        axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-        .then(function(response){
+    onDeleteContact =  async (id, dispath) => {
+        try {
+            await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
             dispath({type: 'Delete_contact', payload: id});
-            console.log(response);
-        });
-        
-    }
+            console.log("successful");
+        } catch (e) {
+            console.log("that failed", e);
+        }
+    };
 
     render() {
         

@@ -3,6 +3,7 @@ import { Consumer } from '../../Context';
 //import uuid from 'uuid';
 import TextInputGroup from './../layout/TextInputGroup';
 import axios from 'axios';
+import { async } from 'q';
 
 class AddContact extends Component {
     
@@ -13,7 +14,7 @@ class AddContact extends Component {
         error: {}
     }
     
-    onSubmit = (dispath, e) => {
+    onSubmit =  async (dispath, e) => {
         e.preventDefault();
         const  {name, email, phone} = this.state;
 
@@ -40,8 +41,9 @@ class AddContact extends Component {
             phone
         }
         
-        axios.post('https://jsonplaceholder.typicode.com/users', newContact)
-        .then( res => dispath({type: 'Add_contact', payload: res.data}))
+        const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
+        dispath({type: 'Add_contact', payload: res.data});
+        
         
         this.setState({
             name: '',
