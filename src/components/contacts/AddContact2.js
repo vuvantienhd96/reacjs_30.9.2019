@@ -17,17 +17,17 @@ class AddContact extends Component {
         const  {name, email, phone} = this.state;
 
         //Check For Errors
-        if(name == ''){
+        if(name === ''){
             this.setState({error: {name: 'this is name wrong or invalid !'}})
             return;
         }
         
-        if(phone == ''){
+        if(phone === ''){
             this.setState({error: {phone: 'this is phone wrong or invalid !'}})
             return;
         }
 
-        if(email == ''){
+        if(email === ''){
             this.setState({error: {email: 'this is email wrong or invalid !'}})
             return;
         }
@@ -46,6 +46,8 @@ class AddContact extends Component {
             phone:'', 
             error: {}
         });
+
+        this.props.history.push('/');
     };
     
     onChange = (e) => this.setState({ [e.target.name] : e.target.value});
