@@ -3,6 +3,7 @@ import { Consumer } from '../../Context';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { async } from 'q';
+import { Link } from 'react-router-dom';
 
 class Contact extends Component {
     state = {
@@ -42,7 +43,16 @@ class Contact extends Component {
                                 className="fas fa-sort-down" style={{ cursor: 'pointer'}}></i>
                                 <i onClick={this.onDeleteContact.bind(this, id, dispath)}
                                 className="fas fa-times" style={{ cursor: 'pointer', color: 'red', float: 'right'}}></i>
+                                <Link to={`contact/edit/${id}`}>
+                                    <i className="fas fa-pencil-alt" style={{
+                                        cursor: 'poiter',
+                                        float: 'right',
+                                        color: 'Green',
+                                        marginRight: '1rem'
+                                    }}/>
+                                </Link>
                             </h4>
+                        
                             {showContactInfo ? (<ul className="list-group">
                                 <li className="list-group-item">{email}</li>
                                 <li className="list-group-item">{phone}</li>
