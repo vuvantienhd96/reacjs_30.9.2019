@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 
 import { Provider } from './Context';
 
@@ -17,7 +17,7 @@ function App() {
   
   return (
     <Provider>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Header branName="Contact Manager"/>
         <div className="container">
